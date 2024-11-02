@@ -25,10 +25,30 @@
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:background="@drawable/dashed_border_green"
-        app:layout_constraintBottom_toTopOf="@id/additionalInfoContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <View
+        android:id="@+id/studentSectionContainer"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:background="@drawable/yellow_dashed_border"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/basicInfoContainer" />
+
+    <View
+        android:id="@+id/employeeSectionContainer"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:background="@drawable/yellow_dashed_border"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/studentSectionContainer" />
+
 
     <View
         android:id="@+id/additionalInfoContainer"
@@ -38,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/basicInfoContainer" />
+        app:layout_constraintTop_toBottomOf="@id/employeeSectionContainer" />
 
     <TextView
         android:id="@+id/titleBasicInfo"
@@ -239,11 +259,229 @@
     </RadioGroup>
 
     <TextView
+        android:id="@+id/titleStudentInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:text="DONNÉES SPÉCIFIQUES (ÉTUDIANTS)"
+        android:textColor="#757575"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupOccupation" />
+
+    <TextView
+        android:id="@+id/labelSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Ecole/Université"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@id/inputSchool"
+        app:layout_constraintStart_toStartOf="@id/labelNom" />
+
+    <EditText
+        android:id="@+id/inputSchool"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:hint="Ecole/Université"
+        android:padding="4dp"
+        android:textColor="#000000"
+        android:textColorHint="#757575"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintTop_toBottomOf="@id/titleStudentInfo" />
+
+    <View
+        android:id="@+id/lineSchool"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputSchool"
+        app:layout_constraintTop_toBottomOf="@id/inputSchool" />
+
+    <TextView
+        android:id="@+id/labelGradYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Année du diplôme"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@id/inputGradYear"
+        app:layout_constraintStart_toStartOf="@id/labelNom" />
+
+    <EditText
+        android:id="@+id/inputGradYear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:hint="Année du diplôme"
+        android:inputType="number"
+        android:padding="4dp"
+        android:textColor="#000000"
+        android:textColorHint="#757575"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintTop_toBottomOf="@id/lineSchool" />
+
+    <View
+        android:id="@+id/lineGradYear"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputGradYear"
+        app:layout_constraintTop_toBottomOf="@id/inputGradYear" />
+
+    <TextView
+        android:id="@+id/titleEmployeeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:text="DONNÉES SPÉCIFIQUES (EMPLOYÉ)"
+        android:textColor="#757575"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupOccupation" />
+
+    <!-- Company field -->
+    <TextView
+        android:id="@+id/labelCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Entreprise"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@id/inputCompany"
+        app:layout_constraintStart_toStartOf="@id/labelNom" />
+
+    <EditText
+        android:id="@+id/inputCompany"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:hint="Entreprise"
+        android:padding="4dp"
+        android:textColor="#000000"
+        android:textColorHint="#757575"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintTop_toBottomOf="@id/titleEmployeeInfo" />
+
+    <View
+        android:id="@+id/lineCompany"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputCompany"
+        app:layout_constraintTop_toBottomOf="@id/inputCompany" />
+
+    <!-- Sector field -->
+    <TextView
+        android:id="@+id/labelSector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Secteur"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@id/spinnerSector"
+        app:layout_constraintStart_toStartOf="@id/labelNom" />
+
+    <Spinner
+        android:id="@+id/spinnerSector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:padding="4dp"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintTop_toBottomOf="@id/lineCompany" />
+
+    <View
+        android:id="@+id/lineSector"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/spinnerSector"
+        app:layout_constraintTop_toBottomOf="@id/spinnerSector" />
+
+    <!-- Experience field -->
+    <TextView
+        android:id="@+id/labelExperience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Expérience (années)"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@id/inputExperience"
+        app:layout_constraintStart_toStartOf="@id/labelNom" />
+
+    <EditText
+        android:id="@+id/inputExperience"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:hint="Expérience"
+        android:inputType="number"
+        android:padding="4dp"
+        android:textColor="#000000"
+        android:textColorHint="#757575"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintTop_toBottomOf="@id/lineSector" />
+
+    <View
+        android:id="@+id/lineExperience"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/inputExperience"
+        app:layout_constraintTop_toBottomOf="@id/inputExperience" />
+
+    <TextView
         android:id="@+id/titleComplementaryInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:text="DONNÉES COMPLÉMENTAIRES"
         android:textColor="#757575"
         android:textSize="20sp"
