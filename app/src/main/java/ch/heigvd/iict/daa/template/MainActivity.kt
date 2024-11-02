@@ -47,18 +47,18 @@ class MainActivity : AppCompatActivity() {
 
         radioGroupOccupation.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.radioEtudiant -> {
+                R.id.radioStudent -> {
                     studentViews.forEach { it.visibility = View.VISIBLE }
                     employeeViews.forEach { it.visibility = View.GONE }
-                    findViewById<View>(R.id.titleComplementaryInfo).updateLayoutParams<ConstraintLayout.LayoutParams> {
+                    findViewById<View>(R.id.titleAdditionalInfo).updateLayoutParams<ConstraintLayout.LayoutParams> {
                         topToBottom = R.id.lineGradYear
                     }
                 }
 
-                R.id.radioEmploye -> {
+                R.id.radioEmployee -> {
                     studentViews.forEach { it.visibility = View.GONE }
                     employeeViews.forEach { it.visibility = View.VISIBLE }
-                    findViewById<View>(R.id.titleComplementaryInfo).updateLayoutParams<ConstraintLayout.LayoutParams> {
+                    findViewById<View>(R.id.titleAdditionalInfo).updateLayoutParams<ConstraintLayout.LayoutParams> {
                         topToBottom = R.id.lineExperience
                     }
                 }

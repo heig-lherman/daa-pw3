@@ -49,7 +49,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/studentSectionContainer" />
 
-
     <View
         android:id="@+id/additionalInfoContainer"
         android:layout_width="0dp"
@@ -73,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
-        android:id="@+id/labelNom"
+        android:id="@+id/labelLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -81,12 +80,12 @@
         android:text="Nom"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputNom"
+        app:layout_constraintBaseline_toBaselineOf="@id/inputLastName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleBasicInfo" />
 
     <EditText
-        android:id="@+id/inputNom"
+        android:id="@+id/inputLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="128dp"
@@ -98,32 +97,32 @@
         android:textColorHint="#757575"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/labelNom"
+        app:layout_constraintStart_toEndOf="@id/labelLastName"
         app:layout_constraintTop_toBottomOf="@id/titleBasicInfo" />
 
     <View
-        android:id="@+id/lineNom"
+        android:id="@+id/lineLastName"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
-        app:layout_constraintTop_toBottomOf="@id/inputNom" />
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
+        app:layout_constraintTop_toBottomOf="@id/inputLastName" />
 
     <TextView
-        android:id="@+id/labelPrenom"
+        android:id="@+id/labelFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Prénom"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputPrenom"
-        app:layout_constraintStart_toStartOf="@id/labelNom"
-        app:layout_constraintTop_toBottomOf="@id/lineNom" />
+        app:layout_constraintBaseline_toBaselineOf="@id/inputFirstName"
+        app:layout_constraintStart_toStartOf="@id/labelLastName"
+        app:layout_constraintTop_toBottomOf="@id/lineLastName" />
 
     <EditText
-        android:id="@+id/inputPrenom"
+        android:id="@+id/inputFirstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -134,32 +133,32 @@
         android:textColorHint="#757575"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
-        app:layout_constraintTop_toBottomOf="@id/lineNom" />
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
+        app:layout_constraintTop_toBottomOf="@id/lineLastName" />
 
     <View
-        android:id="@+id/linePrenom"
+        android:id="@+id/lineFirstName"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputPrenom"
-        app:layout_constraintTop_toBottomOf="@id/inputPrenom" />
+        app:layout_constraintStart_toStartOf="@id/inputFirstName"
+        app:layout_constraintTop_toBottomOf="@id/inputFirstName" />
 
     <TextView
-        android:id="@+id/labelDateNaissance"
+        android:id="@+id/labelBirthDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Date de naissance"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputDateNaissance"
-        app:layout_constraintStart_toStartOf="@id/labelNom"
-        app:layout_constraintTop_toBottomOf="@id/linePrenom" />
+        app:layout_constraintBaseline_toBaselineOf="@id/inputBirthDate"
+        app:layout_constraintStart_toStartOf="@id/labelLastName"
+        app:layout_constraintTop_toBottomOf="@id/lineFirstName" />
 
     <EditText
-        android:id="@+id/inputDateNaissance"
+        android:id="@+id/inputBirthDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -171,32 +170,32 @@
         android:textColorHint="#757575"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
-        app:layout_constraintTop_toBottomOf="@id/linePrenom" />
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
+        app:layout_constraintTop_toBottomOf="@id/lineFirstName" />
 
     <View
-        android:id="@+id/lineDateNaissance"
+        android:id="@+id/lineBirthDate"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputDateNaissance"
-        app:layout_constraintTop_toBottomOf="@id/inputDateNaissance" />
+        app:layout_constraintStart_toStartOf="@id/inputBirthDate"
+        app:layout_constraintTop_toBottomOf="@id/inputBirthDate" />
 
     <TextView
-        android:id="@+id/labelNationalite"
+        android:id="@+id/labelNationality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Nationalité"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/spinnerNationalite"
-        app:layout_constraintStart_toStartOf="@id/labelNom"
-        app:layout_constraintTop_toBottomOf="@id/lineDateNaissance" />
+        app:layout_constraintBaseline_toBaselineOf="@id/spinnerNationality"
+        app:layout_constraintStart_toStartOf="@id/labelLastName"
+        app:layout_constraintTop_toBottomOf="@id/lineBirthDate" />
 
     <Spinner
-        android:id="@+id/spinnerNationalite"
+        android:id="@+id/spinnerNationality"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -204,17 +203,17 @@
         android:padding="4dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
-        app:layout_constraintTop_toBottomOf="@id/lineDateNaissance" />
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
+        app:layout_constraintTop_toBottomOf="@id/lineBirthDate" />
 
     <View
-        android:id="@+id/lineNationalite"
+        android:id="@+id/lineNationality"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/spinnerNationalite"
-        app:layout_constraintTop_toBottomOf="@id/spinnerNationalite" />
+        app:layout_constraintStart_toStartOf="@id/spinnerNationality"
+        app:layout_constraintTop_toBottomOf="@id/spinnerNationality" />
 
     <TextView
         android:id="@+id/labelOccupation"
@@ -225,8 +224,8 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/radioGroupOccupation"
-        app:layout_constraintStart_toStartOf="@id/labelNom"
-        app:layout_constraintTop_toBottomOf="@id/lineNationalite" />
+        app:layout_constraintStart_toStartOf="@id/labelLastName"
+        app:layout_constraintTop_toBottomOf="@id/lineNationality" />
 
     <RadioGroup
         android:id="@+id/radioGroupOccupation"
@@ -235,11 +234,11 @@
         android:layout_marginTop="32dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
-        app:layout_constraintTop_toBottomOf="@id/lineNationalite">
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
+        app:layout_constraintTop_toBottomOf="@id/lineNationality">
 
         <RadioButton
-            android:id="@+id/radioEtudiant"
+            android:id="@+id/radioStudent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#6200EE"
@@ -248,7 +247,7 @@
             android:textSize="16sp" />
 
         <RadioButton
-            android:id="@+id/radioEmploye"
+            android:id="@+id/radioEmployee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -281,7 +280,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintBaseline_toBaselineOf="@id/inputSchool"
-        app:layout_constraintStart_toStartOf="@id/labelNom" />
+        app:layout_constraintStart_toStartOf="@id/labelLastName" />
 
     <EditText
         android:id="@+id/inputSchool"
@@ -296,7 +295,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/titleStudentInfo" />
 
     <View
@@ -319,7 +318,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintBaseline_toBaselineOf="@id/inputGradYear"
-        app:layout_constraintStart_toStartOf="@id/labelNom" />
+        app:layout_constraintStart_toStartOf="@id/labelLastName" />
 
     <EditText
         android:id="@+id/inputGradYear"
@@ -335,7 +334,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/lineSchool" />
 
     <View
@@ -361,7 +360,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/radioGroupOccupation" />
 
-    <!-- Company field -->
     <TextView
         android:id="@+id/labelCompany"
         android:layout_width="wrap_content"
@@ -372,7 +370,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintBaseline_toBaselineOf="@id/inputCompany"
-        app:layout_constraintStart_toStartOf="@id/labelNom" />
+        app:layout_constraintStart_toStartOf="@id/labelLastName" />
 
     <EditText
         android:id="@+id/inputCompany"
@@ -387,7 +385,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/titleEmployeeInfo" />
 
     <View
@@ -400,7 +398,6 @@
         app:layout_constraintStart_toStartOf="@id/inputCompany"
         app:layout_constraintTop_toBottomOf="@id/inputCompany" />
 
-    <!-- Sector field -->
     <TextView
         android:id="@+id/labelSector"
         android:layout_width="wrap_content"
@@ -411,7 +408,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintBaseline_toBaselineOf="@id/spinnerSector"
-        app:layout_constraintStart_toStartOf="@id/labelNom" />
+        app:layout_constraintStart_toStartOf="@id/labelLastName" />
 
     <Spinner
         android:id="@+id/spinnerSector"
@@ -423,7 +420,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/lineCompany" />
 
     <View
@@ -436,7 +433,6 @@
         app:layout_constraintStart_toStartOf="@id/spinnerSector"
         app:layout_constraintTop_toBottomOf="@id/spinnerSector" />
 
-    <!-- Experience field -->
     <TextView
         android:id="@+id/labelExperience"
         android:layout_width="wrap_content"
@@ -447,7 +443,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintBaseline_toBaselineOf="@id/inputExperience"
-        app:layout_constraintStart_toStartOf="@id/labelNom" />
+        app:layout_constraintStart_toStartOf="@id/labelLastName" />
 
     <EditText
         android:id="@+id/inputExperience"
@@ -463,7 +459,7 @@
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputNom"
+        app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/lineSector" />
 
     <View
@@ -477,7 +473,7 @@
         app:layout_constraintTop_toBottomOf="@id/inputExperience" />
 
     <TextView
-        android:id="@+id/titleComplementaryInfo"
+        android:id="@+id/titleAdditionalInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -499,7 +495,7 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/inputEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleComplementaryInfo" />
+        app:layout_constraintTop_toBottomOf="@id/titleAdditionalInfo" />
 
     <EditText
         android:id="@+id/inputEmail"
@@ -516,7 +512,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/labelEmail"
-        app:layout_constraintTop_toBottomOf="@id/titleComplementaryInfo" />
+        app:layout_constraintTop_toBottomOf="@id/titleAdditionalInfo" />
 
     <View
         android:id="@+id/lineEmail"
