@@ -65,4 +65,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
+    private fun saveData() {
+
+    }
+
+    private fun clearForm() {
+
+
+    }
+
 }

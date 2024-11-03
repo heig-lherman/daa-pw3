@@ -202,6 +202,7 @@
         android:background="@null"
         android:padding="4dp"
         android:textSize="16sp"
+        android:entries="@array/nationalities"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/lineBirthDate" />
@@ -229,7 +230,7 @@
 
     <RadioGroup
         android:id="@+id/radioGroupOccupation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:orientation="horizontal"
@@ -261,8 +262,7 @@
         android:id="@+id/titleStudentInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+
         android:text="DONNÉES SPÉCIFIQUES (ÉTUDIANTS)"
         android:textColor="#757575"
         android:textSize="20sp"
@@ -351,8 +351,6 @@
         android:id="@+id/titleEmployeeInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
         android:text="DONNÉES SPÉCIFIQUES (EMPLOYÉ)"
         android:textColor="#757575"
         android:textSize="20sp"
@@ -419,6 +417,7 @@
         android:padding="4dp"
         android:textSize="16sp"
         android:visibility="gone"
+        android:entries="@array/sectors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/lineCompany" />
@@ -571,7 +570,7 @@
         android:layout_marginEnd="8dp"
         android:background="@null"
         android:text="ANNULER"
-        android:textColor="#6200EE"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@id/buttonOk"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -585,7 +584,7 @@
         android:layout_marginTop="16dp"
         android:background="@null"
         android:text="OK"
-        android:textColor="#6200EE"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonCancel"
         app:layout_constraintTop_toBottomOf="@id/lineComments" />
