@@ -1,5 +1,6 @@
 package ch.heigvd.iict.daa.template
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,10 +18,12 @@ import androidx.core.view.updateLayoutParams
 import ch.heigvd.iict.daa.labo3.CustomSpinnerAdapter
 import ch.heigvd.iict.daa.labo3.Student
 import ch.heigvd.iict.daa.template.databinding.ActivityMainBinding
+import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.TimeZone
 
 class MainActivity : AppCompatActivity() {
     // for binding (viewBinding = true)
@@ -182,6 +185,7 @@ class MainActivity : AppCompatActivity() {
         // Create the date picker
         datePicker = MaterialDatePicker.Builder.datePicker()
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setCalendarConstraints(calendarConstraint())
             .setTitleText("Select a date")
             .build()
 
@@ -198,6 +202,23 @@ class MainActivity : AppCompatActivity() {
             binding.inputDate.setText(dateFormat.format(Date(selection)))
         }
 
+    }
+
+    /**
+     * Set the constraint for the calendar, the date should be between today and 110 years ago
+     */
+    private fun calendarConstraint(): CalendarConstraints {
+        val today = MaterialDatePicker.todayInUtcMilliseconds()
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+
+        calendar.timeInMillis = today
+        calendar.add(Calendar.YEAR, -110)
+        val minDate = calendar.timeInMillis
+
+        return CalendarConstraints.Builder()
+            .setStart(minDate)
+            .setEnd(today)
+            .build()
     }
 
     private fun setupButtons() {
