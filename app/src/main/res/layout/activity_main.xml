@@ -5,29 +5,13 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#6200EE"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Labo"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-    </androidx.appcompat.widget.Toolbar>
-
     <View
         android:id="@+id/basicInfoContainer"
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:background="@drawable/dashed_border_green"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/studentSectionContainer"
@@ -69,7 +53,7 @@
         android:textColor="#757575"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/labelLastName"
@@ -153,17 +137,16 @@
         android:text="Date de naissance"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputBirthDate"
+        app:layout_constraintBaseline_toBaselineOf="@id/inputDate"
         app:layout_constraintStart_toStartOf="@id/labelLastName"
         app:layout_constraintTop_toBottomOf="@id/lineFirstName" />
 
     <EditText
-        android:id="@+id/inputBirthDate"
+        android:id="@+id/inputDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@null"
-        android:drawableEnd="@drawable/cake"
         android:inputType="none"
         android:padding="4dp"
         android:textColor="#000000"
@@ -179,8 +162,17 @@
         android:layout_height="1dp"
         android:background="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputBirthDate"
-        app:layout_constraintTop_toBottomOf="@id/inputBirthDate" />
+        app:layout_constraintStart_toStartOf="@id/inputDate"
+        app:layout_constraintTop_toBottomOf="@id/inputDate" />
+
+    <ImageButton
+            android:id="@+id/dateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cake"
+            android:contentDescription="Select birthdate"
+            app:layout_constraintEnd_toEndOf="@+id/inputDate"
+            app:layout_constraintTop_toTopOf="@+id/inputDate" />
 
     <TextView
         android:id="@+id/labelNationality"
@@ -544,7 +536,7 @@
         android:background="@null"
         android:gravity="top"
         android:inputType="textMultiLine"
-        android:minLines="3"
+        android:minLines="2"
         android:padding="4dp"
         android:textColor="#000000"
         android:textColorHint="#757575"
@@ -573,6 +565,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@id/buttonOk"
         app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lineComments" />
 
@@ -585,6 +578,7 @@
         android:background="@null"
         android:text="OK"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonCancel"
         app:layout_constraintTop_toBottomOf="@id/lineComments" />
