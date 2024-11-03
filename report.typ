@@ -20,6 +20,17 @@ quelle configuration particulière faut-il faire dans le fichier XML pour que so
 soit correct ? Nous pensons notamment à la possibilité de faire des retours à la ligne, d’activer
 le correcteur orthographique et de permettre au champ de prendre la taille nécessaire._
 
+Il faut ajouter les attributs suivants au champ `EditText` dans le fichier XML :
+```xml
+android:inputType="textMultiLine|textAutoCorrect"
+android:minLines="2"
+android:layout_height="wrap_content"
+```
+
+Cela permet de définir le champ comme étant un champ multiligne et de définir le nombre de lignes affichées par défaut.
+Par ailleurs, afin que le champs puisse s'adapter à la taille du texte, nous avons ajouté l'attribut `android:layout_height="wrap_content"`.
+En ce qui concerne le correcteur orthographique, nous avons ajouté l'attribut `android:inputType="textAutoCorrect"`.
+
 == Question 4.2
 _Pour afficher la date sélectionnée via le DatePicker nous pouvons utiliser un DateFormat
 permettant par exemple d’afficher 12 juin 1996 à partir d’une instance de Date. Le formatage
@@ -27,6 +38,16 @@ des dates peut être relativement différent en fonction des langues, la traduct
 exemple, mais également des habitudes régionales différentes : la même date en anglais
 britannique serait 12th June 1996 et en anglais américain June 12, 1996. Comment peut-on
 gérer cela au mieux ?_
+
+Pour gérer les différentes langues et les différentes habitudes régionales, nous pouvons utiliser la classe `SimpleDateFormat` en lui passant un `Locale` en paramètre.
+```kotlin
+val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.FRANCE)
+val formattedDate = dateFormat.format(date)
+```
+
+Par exemple, pour afficher la date en français, nous utilisons le `Locale.FRANCE` qui permet d'afficher les mois en français.
+Pour afficher la date en anglais britannique, nous utiliserions le `Locale.UK` et pour l'anglais américain, le `Locale.US`.
+
 
 == Question 4.3
 _Veuillez choisir une question en fonction de votre choix d’implémentation :_
@@ -39,6 +60,33 @@ _Si vous avez utilisé le MaterialDatePicker2 de la librairie Material. Est-il p
 les dates sélectionnables dans le dialogue, en particulier pour une date de naissance il est
 peu probable d’avoir une personne née il y a plus de 110 ans ou à une date dans le futur.
 Comment pouvons-nous mettre cela en place ?_
+
+Pour limiter les dates sélectionnables dans `MaterialDatePicker`, nous pouvons utiliser la méthode `setCalendarConstraints` qui permet de définir les limites de dates sélectionnables.
+
+```kotlin
+// création du builder
+private fun createConstraintsBuilder(): CalendarConstraints {
+    val today = MaterialDatePicker.todayInUtcMilliseconds()
+    val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+
+    calendar.timeInMillis = today
+    calendar.add(Calendar.YEAR, -110)
+    val minDate = calendar.timeInMillis
+
+    return CalendarConstraints.Builder()
+        .setStart(minDate)
+        .setEnd(today)
+        .build()
+}
+
+// Puis l'on ajoute le builder à notre MaterialDatePicker
+
+val datePicker = MaterialDatePicker.Builder.datePicker()
+    .setCalendarConstraints(constraintsBuilder.build())
+    .build()
+```
+
+
 
 == Question 4.4
 _Lors du remplissage des champs textuels, vous pouvez constater que le bouton « suivant »

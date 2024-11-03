@@ -23,6 +23,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 
 class MainActivity : AppCompatActivity() {
@@ -198,7 +199,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         datePicker.addOnPositiveButtonClickListener { selection ->
-            val dateFormat = SimpleDateFormat.getDateInstance()
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.FRANCE)
             binding.inputDate.setText(dateFormat.format(Date(selection)))
         }
 
