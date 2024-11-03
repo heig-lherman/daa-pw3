@@ -82,6 +82,7 @@
         android:textColor="#000000"
         android:textColorHint="#757575"
         android:textSize="16sp"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/labelLastName"
         app:layout_constraintTop_toBottomOf="@id/titleBasicInfo" />
@@ -118,6 +119,7 @@
         android:textColor="#000000"
         android:textColorHint="#757575"
         android:textSize="16sp"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/lineLastName" />
@@ -149,7 +151,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@null"
-        android:inputType="none"
+        android:inputType="date"
         android:padding="4dp"
         android:textColor="#000000"
         android:textColorHint="#757575"
@@ -282,6 +284,7 @@
         android:layout_marginTop="16dp"
         android:background="@null"
         android:hint="Ecole/Université"
+        android:inputType="text"
         android:padding="4dp"
         android:textColor="#000000"
         android:textColorHint="#757575"
@@ -375,6 +378,7 @@
         android:textColorHint="#757575"
         android:textSize="16sp"
         android:visibility="gone"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/titleEmployeeInfo" />
