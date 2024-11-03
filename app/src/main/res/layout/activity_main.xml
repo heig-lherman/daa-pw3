@@ -41,7 +41,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/employeeSectionContainer" />
+        app:layout_constraintTop_toBottomOf="@id/employeeSectionContainer">
+
+    </View>
 
     <TextView
         android:id="@+id/titleBasicInfo"
@@ -194,7 +196,6 @@
         android:background="@null"
         android:padding="4dp"
         android:textSize="16sp"
-        android:entries="@array/nationalities"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/lineBirthDate" />
@@ -409,7 +410,6 @@
         android:padding="4dp"
         android:textSize="16sp"
         android:visibility="gone"
-        android:entries="@array/sectors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/inputLastName"
         app:layout_constraintTop_toBottomOf="@id/lineCompany" />

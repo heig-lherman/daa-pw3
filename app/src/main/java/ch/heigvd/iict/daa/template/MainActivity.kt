@@ -1,7 +1,10 @@
 package ch.heigvd.iict.daa.template
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Spinner
@@ -9,10 +12,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
 import androidx.core.view.updateLayoutParams
+import ch.heigvd.iict.daa.labo3.CustomSpinnerAdapter
+import ch.heigvd.iict.daa.labo3.Student
 import ch.heigvd.iict.daa.template.databinding.ActivityMainBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         // set up the date picker
         setupDatePicker()
 
+        // set up the spinners
+        setupSpinner()
+
         // set up clear and save buttons
         setupButtons()
     }
@@ -40,28 +50,28 @@ class MainActivity : AppCompatActivity() {
         val radioGroupOccupation = findViewById<RadioGroup>(R.id.radioGroupOccupation)
 
         val studentViews = listOf(
-            findViewById<View>(R.id.studentSectionContainer),
-            findViewById<TextView>(R.id.titleStudentInfo),
-            findViewById<TextView>(R.id.labelSchool),
-            findViewById<EditText>(R.id.inputSchool),
-            findViewById<View>(R.id.lineSchool),
-            findViewById<TextView>(R.id.labelGradYear),
-            findViewById<EditText>(R.id.inputGradYear),
-            findViewById<View>(R.id.lineGradYear)
+            binding.studentSectionContainer,
+            binding.titleStudentInfo,
+            binding.labelSchool,
+            binding.inputSchool,
+            binding.lineSchool,
+            binding.labelGradYear,
+            binding.inputGradYear,
+            binding.lineGradYear
         )
 
         val employeeViews = listOf(
-            findViewById<View>(R.id.employeeSectionContainer),
-            findViewById<TextView>(R.id.titleEmployeeInfo),
-            findViewById<TextView>(R.id.labelCompany),
-            findViewById<EditText>(R.id.inputCompany),
-            findViewById<View>(R.id.lineCompany),
-            findViewById<TextView>(R.id.labelSector),
-            findViewById<Spinner>(R.id.spinnerSector),
-            findViewById<View>(R.id.lineSector),
-            findViewById<TextView>(R.id.labelExperience),
-            findViewById<EditText>(R.id.inputExperience),
-            findViewById<View>(R.id.lineExperience)
+            binding.employeeSectionContainer,
+            binding.titleEmployeeInfo,
+            binding.labelCompany,
+            binding.inputCompany,
+            binding.lineCompany,
+            binding.labelSector,
+            binding.spinnerSector,
+            binding.lineSector,
+            binding.labelExperience,
+            binding.inputExperience,
+            binding.lineExperience
         )
 
         radioGroupOccupation.setOnCheckedChangeListener { _, checkedId ->
@@ -69,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.radioStudent -> {
                     studentViews.forEach { it.visibility = View.VISIBLE }
                     employeeViews.forEach { it.visibility = View.GONE }
+
                     findViewById<View>(R.id.titleAdditionalInfo).updateLayoutParams<ConstraintLayout.LayoutParams> {
                         topToBottom = R.id.lineGradYear
                     }
@@ -77,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.radioEmployee -> {
                     studentViews.forEach { it.visibility = View.GONE }
                     employeeViews.forEach { it.visibility = View.VISIBLE }
+
                     findViewById<View>(R.id.titleAdditionalInfo).updateLayoutParams<ConstraintLayout.LayoutParams> {
                         topToBottom = R.id.lineExperience
                     }
@@ -86,21 +98,16 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun saveData() {
         if (!validateInput()) {
             return
         }
-        // Basic information
-        val lastName = binding.inputLastName.text.toString()
-        val firstName = binding.inputFirstName.text.toString()
-        val date = binding.inputDate.text.toString()
-        val nationality = binding.spinnerNationality.selectedItem.toString()
 
         when (binding.radioGroupOccupation.checkedRadioButtonId) {
             R.id.radioStudent -> {
                 saveStudent()
             }
+
             R.id.radioEmployee -> {
                 saveEmployee()
             }
@@ -108,16 +115,45 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveStudent() {
-        // Student information
-        val school = binding.inputSchool.text.toString()
-        val gradYear = binding.inputGradYear.text.toString()
+
+        // Create a student object
+        val student = Student(
+            binding.inputLastName.text.toString(),
+            binding.inputFirstName.text.toString(),
+            // get date as a Calendar object
+            binding.inputDate.text.toString().toCalendar(),
+            binding.spinnerNationality.selectedItem.toString(),
+            binding.inputSchool.text.toString(),
+            binding.inputGradYear.text.toString().toInt(),
+            binding.inputEmail.text.toString(),
+            binding.inputComments.text.toString()
+        )
+        toast(student.toString(), Toast.LENGTH_LONG)
+    }
+
+    private fun String.toCalendar(): Calendar {
+        val date = SimpleDateFormat.getDateInstance().parse(this)
+        val calendar = Calendar.getInstance()
+        if (date != null) {
+            calendar.time = date
+        }
+        return calendar
     }
 
     private fun saveEmployee() {
-        // Employee information
-        val company = binding.inputCompany.text.toString()
-        val sector = binding.spinnerSector.selectedItem.toString()
-        val experience = binding.inputExperience.text.toString()
+        // Create an employee object
+        val employee = Student(
+            binding.inputLastName.text.toString(),
+            binding.inputFirstName.text.toString(),
+            // get date as a Calendar object
+            binding.inputDate.text.toString().toCalendar(),
+            binding.spinnerNationality.selectedItem.toString(),
+            binding.inputCompany.text.toString(),
+            binding.inputExperience.text.toString().toInt(),
+            binding.inputEmail.text.toString(),
+            binding.inputComments.text.toString()
+        )
+        toast(employee.toString(), Toast.LENGTH_LONG)
     }
 
     private fun clearForm() {
@@ -191,16 +227,17 @@ class MainActivity : AppCompatActivity() {
                 val gradYear = binding.inputGradYear.text.toString()
 
                 if (school.isEmpty() || gradYear.isEmpty()) {
-                    toast("Please fill in all the required fields for the student")
+                    toast("Please fill in all the required fields for student")
                     return false
                 }
             }
+
             R.id.radioEmployee -> {
                 val company = binding.inputCompany.text.toString()
                 val experience = binding.inputExperience.text.toString()
 
                 if (company.isEmpty() || experience.isEmpty()) {
-                    toast("Please fill in all the required fields for the employee")
+                    toast("Please fill in all the required fields for employee")
                     return false
                 }
             }
@@ -209,8 +246,43 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun toast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    private fun toast(message: String, length: Int = Toast.LENGTH_SHORT) {
+        Toast.makeText(this, message, length).show()
+    }
+
+    /**
+     * Set up spinners when the activity is created
+     * It initializes the spinners with 'Select' as the default value when null
+     */
+    private fun setupSpinner() {
+        // set up the spinner
+        val spinnerNationality = binding.spinnerNationality
+        val spinnerSector = binding.spinnerSector
+
+        // Setup the adapter to display the list of nationalities
+
+        val arrayAdapter = CustomSpinnerAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            listOf(getString(R.string.nationality_empty)) + resources.getStringArray(R.array.nationalities)
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        spinnerNationality.adapter = arrayAdapter
+
+        // Setup the adapter to display the list of sectors
+
+        val arrayAdapterSector = CustomSpinnerAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            listOf(getString(R.string.sectors_empty)) + resources.getStringArray(R.array.sectors)
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        spinnerSector.adapter = arrayAdapterSector
+
     }
 
 }
