@@ -44,7 +44,7 @@
         <item>@string/law</item>
         <item>@string/teaching</item>
         <item>@string/tourism</item>
-        <item>@string/industrie</item>
+        <item>@string/industry</item>
         <item>@string/ic</item>
         <item>@string/humansciences</item>
         <item>@string/health</item>
@@ -62,7 +62,7 @@
     <string name="law">Droit, Sciences politiques, Sécurité</string>
     <string name="teaching">Enseignement, Formation</string>
     <string name="tourism">Hôtellerie, Restauration, Tourisme</string>
-    <string name="industrie">Industrie</string>
+    <string name="industry">Industrie</string>
     <string name="ic">Information, communication</string>
     <string name="humansciences">Lettres, Langues, Sciences humaines</string>
     <string name="health">Santé</string>
@@ -79,5 +79,4 @@
 
     <string name="btn_cancel">@android:string/cancel</string>
     <string name="btn_ok">@android:string/ok</string>
-
 </resources>

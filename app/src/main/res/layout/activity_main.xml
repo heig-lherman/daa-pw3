@@ -1,590 +1,445 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    tools:context=".MainActivity">
 
-    <View
-        android:id="@+id/basicInfoContainer"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:background="@drawable/dashed_border_green"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/studentSectionContainer"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:background="@drawable/yellow_dashed_border"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/basicInfoContainer" />
-
-    <View
-        android:id="@+id/employeeSectionContainer"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
-        android:background="@drawable/yellow_dashed_border"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/studentSectionContainer" />
-
-    <View
-        android:id="@+id/additionalInfoContainer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/dashed_border_red"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/employeeSectionContainer">
-
-    </View>
-
-    <TextView
-        android:id="@+id/titleBasicInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="DONNÉES DE BASE"
-        android:textColor="#757575"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/labelLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="16dp"
-        android:text="Nom"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputLastName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleBasicInfo" />
-
-    <EditText
-        android:id="@+id/inputLastName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:hint="Nom"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/labelLastName"
-        app:layout_constraintTop_toBottomOf="@id/titleBasicInfo" />
-
-    <View
-        android:id="@+id/lineLastName"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/inputLastName" />
-
-    <TextView
-        android:id="@+id/labelFirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Prénom"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputFirstName"
-        app:layout_constraintStart_toStartOf="@id/labelLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineLastName" />
-
-    <EditText
-        android:id="@+id/inputFirstName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:hint="Prénom"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineLastName" />
-
-    <View
-        android:id="@+id/lineFirstName"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputFirstName"
-        app:layout_constraintTop_toBottomOf="@id/inputFirstName" />
-
-    <TextView
-        android:id="@+id/labelBirthDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Date de naissance"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputDate"
-        app:layout_constraintStart_toStartOf="@id/labelLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineFirstName" />
-
-    <EditText
-        android:id="@+id/inputDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:inputType="date"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineFirstName" />
-
-    <View
-        android:id="@+id/lineBirthDate"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputDate"
-        app:layout_constraintTop_toBottomOf="@id/inputDate" />
-
-    <ImageButton
-            android:id="@+id/dateButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/cake"
-            android:contentDescription="Select birthdate"
-            app:layout_constraintEnd_toEndOf="@+id/inputDate"
-            app:layout_constraintTop_toTopOf="@+id/inputDate" />
-
-    <TextView
-        android:id="@+id/labelNationality"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Nationalité"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/spinnerNationality"
-        app:layout_constraintStart_toStartOf="@id/labelLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineBirthDate" />
-
-    <Spinner
-        android:id="@+id/spinnerNationality"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:padding="4dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineBirthDate" />
-
-    <View
-        android:id="@+id/lineNationality"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/spinnerNationality"
-        app:layout_constraintTop_toBottomOf="@id/spinnerNationality" />
-
-    <TextView
-        android:id="@+id/labelOccupation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Occupation"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/radioGroupOccupation"
-        app:layout_constraintStart_toStartOf="@id/labelLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineNationality" />
-
-    <RadioGroup
-        android:id="@+id/radioGroupOccupation"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineNationality">
+        android:layout_margin="@dimen/element_margin">
 
-        <RadioButton
-            android:id="@+id/radioStudent"
+        <!-- Left guideline -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftColumn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <!-- ##### Base data section ##### -->
+
+        <!-- Regroup all the base data section -->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/basicGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#6200EE"
-            android:text="Etudiant"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            app:constraint_referenced_ids="
+                titleBasicInfo,
+                labelLastName,
+                inputLastName,
+                labelFirstName,
+                inputFirstName,
+                labelBirthdate,
+                inputBirthdate,
+                birthDateButton,
+                labelNationality,
+                inputNationality,
+                labelOccupation,
+                inputOccupation
+            "
+            tools:visibility="visible" />
 
-        <RadioButton
-            android:id="@+id/radioEmployee"
+        <TextView
+            android:id="@+id/titleBasicInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:buttonTint="#6200EE"
-            android:text="Employé"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-    </RadioGroup>
+            android:text="@string/main_base_title"
+            android:textAllCaps="true"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/titleStudentInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <!-- Last name -->
+        <TextView
+            android:id="@+id/labelLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_base_name_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputLastName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleBasicInfo" />
 
-        android:text="DONNÉES SPÉCIFIQUES (ÉTUDIANTS)"
-        android:textColor="#757575"
-        android:textSize="20sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/radioGroupOccupation" />
+        <EditText
+            android:id="@+id/inputLastName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="name"
+            android:hint="@string/main_base_name_title"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/titleBasicInfo" />
 
-    <TextView
-        android:id="@+id/labelSchool"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Ecole/Université"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputSchool"
-        app:layout_constraintStart_toStartOf="@id/labelLastName" />
+        <!-- First name -->
+        <TextView
+            android:id="@+id/labelFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_base_firstname_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputFirstName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelLastName" />
 
-    <EditText
-        android:id="@+id/inputSchool"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:hint="Ecole/Université"
-        android:inputType="text"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/titleStudentInfo" />
+        <EditText
+            android:id="@+id/inputFirstName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="firstName"
+            android:hint="@string/main_base_firstname_title"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/inputLastName" />
 
-    <View
-        android:id="@+id/lineSchool"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputSchool"
-        app:layout_constraintTop_toBottomOf="@id/inputSchool" />
+        <!-- Birth date -->
+        <TextView
+            android:id="@+id/labelBirthdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_base_birthdate_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputBirthdate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelFirstName" />
 
-    <TextView
-        android:id="@+id/labelGradYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Année du diplôme"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputGradYear"
-        app:layout_constraintStart_toStartOf="@id/labelLastName" />
+        <EditText
+            android:id="@+id/inputBirthdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="birthDate"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:hint="@string/main_base_birthdate_title"
+            android:inputType="date"
+            app:layout_constraintEnd_toStartOf="@id/birthDateButton"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/inputFirstName" />
 
-    <EditText
-        android:id="@+id/inputGradYear"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:hint="Année du diplôme"
-        android:inputType="number"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineSchool" />
+        <ImageButton
+            android:id="@+id/birthDateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/main_base_birthdate_dialog_title"
+            android:src="@drawable/cake"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputFirstName" />
 
-    <View
-        android:id="@+id/lineGradYear"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputGradYear"
-        app:layout_constraintTop_toBottomOf="@id/inputGradYear" />
+        <!-- Nationality -->
+        <TextView
+            android:id="@+id/labelNationality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_base_nationality_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputNationality"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelBirthdate" />
 
-    <TextView
-        android:id="@+id/titleEmployeeInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DONNÉES SPÉCIFIQUES (EMPLOYÉ)"
-        android:textColor="#757575"
-        android:textSize="20sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/radioGroupOccupation" />
+        <Spinner
+            android:id="@+id/inputNationality"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/nationalities"
+            android:paddingVertical="@dimen/element_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/inputBirthdate" />
 
-    <TextView
-        android:id="@+id/labelCompany"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Entreprise"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputCompany"
-        app:layout_constraintStart_toStartOf="@id/labelLastName" />
+        <!-- Occupation -->
+        <TextView
+            android:id="@+id/labelOccupation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/element_margin"
+            android:labelFor="@id/inputOccupation"
+            android:text="@string/main_base_occupation_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputNationality" />
 
-    <EditText
-        android:id="@+id/inputCompany"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:hint="Entreprise"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        android:visibility="gone"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/titleEmployeeInfo" />
+        <RadioGroup
+            android:id="@+id/inputOccupation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelOccupation">
 
-    <View
-        android:id="@+id/lineCompany"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputCompany"
-        app:layout_constraintTop_toBottomOf="@id/inputCompany" />
+            <RadioButton
+                android:id="@+id/radioStudent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_base_occupation_student" />
 
-    <TextView
-        android:id="@+id/labelSector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Secteur"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintBaseline_toBaselineOf="@id/spinnerSector"
-        app:layout_constraintStart_toStartOf="@id/labelLastName" />
+            <RadioButton
+                android:id="@+id/radioEmployee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_base_occupation_worker" />
+        </RadioGroup>
 
-    <Spinner
-        android:id="@+id/spinnerSector"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:padding="4dp"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineCompany" />
+        <!-- ##### Student specific section ##### -->
 
-    <View
-        android:id="@+id/lineSector"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/spinnerSector"
-        app:layout_constraintTop_toBottomOf="@id/spinnerSector" />
+        <!-- Regroup all the student data section -->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/studentSpecificGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="
+                titleStudentInfo,
+                labelSchool,
+                inputSchool,
+                labelGradYear,
+                inputGradYear
+            "
+            tools:visibility="gone" />
 
-    <TextView
-        android:id="@+id/labelExperience"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Expérience (années)"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputExperience"
-        app:layout_constraintStart_toStartOf="@id/labelLastName" />
+        <TextView
+            android:id="@+id/titleStudentInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_specific_students_title"
+            android:textAllCaps="true"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputOccupation" />
 
-    <EditText
-        android:id="@+id/inputExperience"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:hint="Expérience"
-        android:inputType="number"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputLastName"
-        app:layout_constraintTop_toBottomOf="@id/lineSector" />
+        <!-- School -->
+        <TextView
+            android:id="@+id/labelSchool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_specific_school_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputSchool"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleStudentInfo" />
 
-    <View
-        android:id="@+id/lineExperience"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputExperience"
-        app:layout_constraintTop_toBottomOf="@id/inputExperience" />
+        <EditText
+            android:id="@+id/inputSchool"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="schoolName"
+            android:hint="@string/main_specific_school_title"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/titleStudentInfo" />
 
-    <TextView
-        android:id="@+id/titleAdditionalInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
-        android:text="DONNÉES COMPLÉMENTAIRES"
-        android:textColor="#757575"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/radioGroupOccupation" />
+        <!-- Grad Year -->
+        <TextView
+            android:id="@+id/labelGradYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_specific_graduationyear_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputGradYear"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputSchool" />
 
-    <TextView
-        android:id="@+id/labelEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Adresse e-mail"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/inputEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleAdditionalInfo" />
+        <EditText
+            android:id="@+id/inputGradYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="graduationYear"
+            android:hint="@string/main_specific_graduationyear_title"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/inputSchool" />
 
-    <EditText
-        android:id="@+id/inputEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:hint="Adresse e-mail"
-        android:inputType="textEmailAddress"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/labelEmail"
-        app:layout_constraintTop_toBottomOf="@id/titleAdditionalInfo" />
+        <!-- ##### Worker specific section ##### -->
 
-    <View
-        android:id="@+id/lineEmail"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputEmail"
-        app:layout_constraintTop_toBottomOf="@id/inputEmail" />
+        <!-- Regroup all the worker data section -->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/workerSpecificGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="
+                titleWorkerInfo,
+                labelCompany,
+                inputCompany,
+                labelSector,
+                inputSector,
+                labelExperience,
+                inputExperience
+            "
+            tools:visibility="gone" />
 
-    <TextView
-        android:id="@+id/labelComments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Commentaires"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lineEmail" />
+        <TextView
+            android:id="@+id/titleWorkerInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_specific_workers_title"
+            android:textAllCaps="true"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputOccupation" />
 
-    <EditText
-        android:id="@+id/inputComments"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@null"
-        android:gravity="top"
-        android:inputType="textMultiLine|textAutoCorrect"
-        android:minLines="2"
-        android:padding="4dp"
-        android:textColor="#000000"
-        android:textColorHint="#757575"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/labelComments" />
+        <!-- Enterprise -->
+        <TextView
+            android:id="@+id/labelCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_specific_compagny_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputCompany"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleWorkerInfo" />
 
-    <View
-        android:id="@+id/lineComments"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/inputComments"
-        app:layout_constraintTop_toBottomOf="@id/inputComments" />
+        <EditText
+            android:id="@+id/inputCompany"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="companyName"
+            android:hint="@string/main_specific_compagny_title"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/titleWorkerInfo" />
 
-    <Button
-        android:id="@+id/buttonCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@null"
-        android:text="ANNULER"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@id/buttonOk"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lineComments" />
+        <!-- Sector -->
+        <TextView
+            android:id="@+id/labelSector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_specific_sector_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputSector"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputCompany" />
 
-    <Button
-        android:id="@+id/buttonOk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:text="OK"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonCancel"
-        app:layout_constraintTop_toBottomOf="@id/lineComments" />
+        <Spinner
+            android:id="@+id/inputSector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/sectors"
+            android:paddingVertical="@dimen/element_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/inputCompany" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Experience -->
+        <TextView
+            android:id="@+id/labelExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_specific_experience_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputExperience"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputSector" />
+
+        <EditText
+            android:id="@+id/inputExperience"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="experience"
+            android:hint="@string/main_specific_experience_title"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/inputSector" />
+
+        <!-- ##### Additional data specific section ##### -->
+
+        <!-- Regroup all the additional data section -->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/additionalDataGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="
+                additionalDataStartBarrier,
+                titleAdditionalData,
+                labelEmail,
+                inputEmail,
+                labelComments,
+                inputComments
+            "
+            tools:visibility="visible" />
+
+        <!-- Barrier for dynamic positioning below worker or student data -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/additionalDataStartBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:barrierMargin="@dimen/element_margin"
+            app:constraint_referenced_ids="
+            labelExperience,
+            labelGradYear
+        " />
+
+        <TextView
+            android:id="@+id/titleAdditionalData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/additional_title"
+            android:textAllCaps="true"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/additionalDataStartBarrier" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/labelEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/additional_email_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/inputEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleAdditionalData" />
+
+        <EditText
+            android:id="@+id/inputEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="email"
+            android:hint="@string/additional_email_title"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftColumn"
+            app:layout_constraintTop_toBottomOf="@id/titleAdditionalData" />
+
+        <!-- Comments -->
+        <TextView
+            android:id="@+id/labelComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/inputComments"
+            android:text="@string/additional_remarks_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputEmail" />
+
+        <EditText
+            android:id="@+id/inputComments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="comments"
+            android:gravity="top"
+            android:inputType="textMultiLine|textAutoCorrect"
+            android:minLines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelComments" />
+
+        <!-- ##### Buttons ##### -->
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cancel"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toStartOf="@id/buttonOk"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputComments" />
+
+        <Button
+            android:id="@+id/buttonOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_ok"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/buttonCancel"
+            app:layout_constraintTop_toBottomOf="@id/inputComments" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
