@@ -17,8 +17,8 @@ import java.util.TimeZone
 val UTC: TimeZone = TimeZone.getTimeZone("UTC")
 
 /**
- * Main activity for our application, which handles redirecting the users to the different
- * parts of the assignment.
+ * Main activity for our application, it handles the controller part of the MVC pattern, which
+ * binds the input fields to the model and handles the user interactions.
  *
  * @author Emilie Bressoud
  * @author Loïc Herman
@@ -227,12 +227,12 @@ class MainActivity : AppCompatActivity() {
         val date = binding.inputBirthdate.text.toString()
 
         if (lastName.isEmpty() || firstName.isEmpty() || date.isEmpty()) {
-            toast("Please fill in all the required fields")
+            toast(getString(R.string.toast_validation_error_required_fields))
             return false
         }
 
         if (binding.inputNationality.selectedItemPosition == 0) {
-            toast("Please select a nationality")
+            toast(getString(R.string.toast_validation_error_nationality))
         }
 
         when (binding.inputOccupation.checkedRadioButtonId) {
@@ -242,7 +242,7 @@ class MainActivity : AppCompatActivity() {
                 val gradYear = binding.inputGradYear.text.toString()
 
                 if (school.isEmpty() || gradYear.isEmpty()) {
-                    toast("Please fill in all the required fields for student")
+                    toast(getString(R.string.toast_validation_error_student_required_fields))
                     return false
                 }
             }
@@ -252,18 +252,18 @@ class MainActivity : AppCompatActivity() {
                 val company = binding.inputCompany.text.toString()
                 val experience = binding.inputExperience.text.toString()
                 if (company.isEmpty() || experience.isEmpty()) {
-                    toast("Please fill in all the required fields for employee")
+                    toast(getString(R.string.toast_validation_error_worker_required_fields))
                     return false
                 }
 
                 if (binding.inputSector.selectedItemPosition == 0) {
-                    toast("Please select a sector")
+                    toast(getString(R.string.toast_validation_error_sector))
                     return false
                 }
             }
 
             else -> {
-                toast("Please select an occupation")
+                toast(getString(R.string.toast_validation_error_occupation))
                 return false
             }
         }
@@ -285,8 +285,10 @@ class MainActivity : AppCompatActivity() {
             binding.inputEmail.text.toString(),
             binding.inputComments.text.toString()
         )
+
         Log.i("[SAVED STUDENT]", student.toString())
-        toast("Student saved successfully")
+        toast(getString(R.string.toast_save_student_success))
+
         return student
     }
 
@@ -305,8 +307,10 @@ class MainActivity : AppCompatActivity() {
             binding.inputEmail.text.toString(),
             binding.inputComments.text.toString()
         )
+
         Log.i("[SAVED WORKER]", worker.toString())
-        toast("Worker saved successfully")
+        toast(getString(R.string.toast_save_worker_success))
+
         return worker
     }
 

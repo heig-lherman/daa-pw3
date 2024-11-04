@@ -79,4 +79,13 @@
 
     <string name="btn_cancel">@android:string/cancel</string>
     <string name="btn_ok">@android:string/ok</string>
+
+    <string name="toast_save_student_success">Étudiant enregistré avec succès</string>
+    <string name="toast_save_worker_success">Employé enregistré avec succès</string>
+    <string name="toast_validation_error_required_fields">Veuillez remplir tous les champs obligatoires</string>
+    <string name="toast_validation_error_nationality">Veuillez sélectionner une nationalité</string>
+    <string name="toast_validation_error_student_required_fields">Veuillez remplir tous les champs obligatoires pour l\'étudiant</string>
+    <string name="toast_validation_error_worker_required_fields">Veuillez remplir tous les champs obligatoires pour l\'employé</string>
+    <string name="toast_validation_error_sector">Veuillez sélectionner un secteur</string>
+    <string name="toast_validation_error_occupation">Veuillez sélectionner une profession</string>
 </resources>

@@ -24,6 +24,7 @@ class SpinnerDefaultValueAdapter<T>(
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+        // Hides the first item (default value) in the dropdown list
         if (position == 0) {
             val v = View(context)
             v.visibility = View.GONE
@@ -34,6 +35,7 @@ class SpinnerDefaultValueAdapter<T>(
     }
 
     override fun isEnabled(position: Int): Boolean {
+        // Sets the first item (default value) as non-selectable
         return position != 0 && super.isEnabled(position)
     }
 }
