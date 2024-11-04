@@ -2,6 +2,7 @@ package ch.heigvd.iict.daa.labo3
 
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.EditorInfo
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +15,6 @@ import java.text.DateFormat
 import java.util.Calendar
 import java.util.TimeZone
 
-val UTC: TimeZone = TimeZone.getTimeZone("UTC")
-
 /**
  * Main activity for our application, it handles the controller part of the MVC pattern, which
  * binds the input fields to the model and handles the user interactions.
@@ -25,6 +24,12 @@ val UTC: TimeZone = TimeZone.getTimeZone("UTC")
  * @author Sacha Butty
  */
 class MainActivity : AppCompatActivity() {
+
+    // Common date instances
+    companion object {
+        private val utcTimezone = TimeZone.getTimeZone("UTC")
+        private val utcDateFormatter = Person.dateFormatter.apply { timeZone = utcTimezone }
+    }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -39,13 +44,16 @@ class MainActivity : AppCompatActivity() {
         setupSpinners()
 
         // Setup the radio group to show/hide the student/worker specific sections
-        setupSectionVisibility();
+        setupSectionVisibility()
 
         // Setup the date picker
         setupDatePicker()
 
         // Setup clear and save buttons event listeners
         setupButtons()
+
+        // Setup automatic click on the validate button when done is clicked after the last edit
+        setupDoneButtonAfterRemark()
 
         // OPTIONAL: Restore the data from the view model
         restoreData(Person.exampleStudent)
@@ -58,13 +66,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupSpinners() {
         binding.inputNationality.adapter = SpinnerDefaultValueAdapter(
             this,
-            android.R.layout.simple_spinner_dropdown_item,
             resources.getString(R.string.nationality_empty),
             resources.getStringArray(R.array.nationalities)
         )
         binding.inputSector.adapter = SpinnerDefaultValueAdapter(
             this,
-            android.R.layout.simple_spinner_dropdown_item,
             resources.getString(R.string.sectors_empty),
             resources.getStringArray(R.array.sectors)
         )
@@ -88,7 +94,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    // Should theoretically never happen
                     binding.studentSpecificGroup.visibility = Group.GONE
                     binding.workerSpecificGroup.visibility = Group.GONE
                 }
@@ -104,6 +109,13 @@ class MainActivity : AppCompatActivity() {
         // Open the date picker when the button is clicked
         binding.birthDateButton.setOnClickListener {
             openDatePicker()
+        }
+
+        // Open the date picker when the focus is gaines (by using the keyboard navigation for example)
+        binding.birthDateButton.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                openDatePicker()
+            }
         }
     }
 
@@ -121,20 +133,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Sets up the automatic click on the validate button when done is clicked after the last edit
+     */
+    private fun setupDoneButtonAfterRemark() {
+        binding.inputComments.setOnEditorActionListener { _, action, _ ->
+            if (action == EditorInfo.IME_ACTION_DONE) {
+                binding.buttonOk.performClick()
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    /**
      * Opens the date picker dialog and sets the selected date in the input field
      */
     private fun openDatePicker() {
-        val utcCalendar = Calendar.getInstance(UTC)
-        val dateFormatter = DateFormat.getDateInstance(
-            DateFormat.LONG,
-            resources.configuration.locales.get(0)
-        ).apply {
-            timeZone = UTC
-        }
+        val utcCalendar = Calendar.getInstance(utcTimezone)
 
         var currentTimestamp = MaterialDatePicker.todayInUtcMilliseconds()
         if (binding.inputBirthdate.text.isNotEmpty()) {
-            val date = dateFormatter.parse(binding.inputBirthdate.text.toString())!!
+            val date = utcDateFormatter.parse(binding.inputBirthdate.text.toString())!!
             currentTimestamp = date.time
         }
 
@@ -160,7 +180,10 @@ class MainActivity : AppCompatActivity() {
             binding.birthDateButton.clearFocus()
 
             utcCalendar.timeInMillis = it
-            binding.inputBirthdate.setText(dateFormatter.format(utcCalendar.time))
+            binding.inputBirthdate.setText(utcDateFormatter.format(utcCalendar.time))
+
+            // Give focus to the spinner to continue the form navigation
+            binding.inputNationality.requestFocus()
         }
     }
 
@@ -170,7 +193,7 @@ class MainActivity : AppCompatActivity() {
     private fun restoreData(person: Person) {
         binding.inputLastName.setText(person.name)
         binding.inputFirstName.setText(person.firstName)
-        binding.inputBirthdate.setText(Person.dateFormatter.format(person.birthDay.time))
+        binding.inputBirthdate.setText(utcDateFormatter.format(person.birthDay.time))
         setSpinner(binding.inputNationality, person.nationality)
         binding.inputEmail.setText(person.email)
         binding.inputComments.setText(person.remark)
@@ -344,15 +367,9 @@ class MainActivity : AppCompatActivity() {
      * Extension function to convert a string to a calendar
      */
     private fun String.toCalendar(): Calendar {
-        val calendar = Calendar.getInstance(UTC)
-        val dateFormatter = DateFormat.getDateInstance(
-            DateFormat.LONG,
-            resources.configuration.locales.get(0)
-        ).apply {
-            timeZone = UTC
-        }
+        val calendar = Calendar.getInstance(utcTimezone)
 
-        val date = dateFormatter.parse(this)
+        val date = utcDateFormatter.parse(this)
         if (date != null) {
             calendar.time = date
         }

@@ -11,13 +11,27 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/element_margin">
 
-        <!-- Left guideline -->
-        <androidx.constraintlayout.widget.Guideline
+        <!-- Left guideline (set to be right next of the largest label) -->
+        <androidx.constraintlayout.widget.Barrier
             android:id="@+id/leftColumn"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.35" />
+            android:layout_height="match_parent"
+            app:barrierDirection="end"
+            app:barrierMargin="@dimen/element_margin"
+            app:constraint_referenced_ids="
+                labelLastName,
+                labelFirstName,
+                labelBirthdate,
+                labelNationality,
+                labelOccupation,
+                labelSchool,
+                labelGradYear,
+                labelCompany,
+                labelSector,
+                labelExperience,
+                labelEmail,
+                labelComments
+            " />
 
         <!-- ##### Base data section ##### -->
 
@@ -89,6 +103,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="firstName"
             android:hint="@string/main_base_firstname_title"
+            android:imeOptions="actionNext"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/leftColumn"
@@ -123,6 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/main_base_birthdate_dialog_title"
+            android:focusableInTouchMode="true"
             android:src="@drawable/cake"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputFirstName" />
@@ -413,6 +429,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="comments"
             android:gravity="top"
+            android:imeOptions="actionDone"
             android:inputType="textMultiLine|textAutoCorrect"
             android:minLines="3"
             app:layout_constraintEnd_toEndOf="parent"

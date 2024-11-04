@@ -8,16 +8,20 @@ import android.widget.ArrayAdapter
 /**
  * Custom spinner adapter that allows to set a default value
  *
+ * @param T the type of the items in the adapter
+ * @param ctx the context
+ * @param defaultValue the default value
+ * @param entries the list of items
+ *
  * @author Emilie Bressoud
  * @author Loïc Herman
  * @author Sacha Butty
  */
 class SpinnerDefaultValueAdapter<T>(
     ctx: Context,
-    resource: Int,
     defaultValue: T,
     entries: Array<T>
-) : ArrayAdapter<T>(ctx, resource) {
+) : ArrayAdapter<T>(ctx, android.R.layout.simple_spinner_dropdown_item) {
     init {
         add(defaultValue)
         addAll(*entries)
