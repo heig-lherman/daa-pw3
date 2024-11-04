@@ -286,6 +286,7 @@ class MainActivity : AppCompatActivity() {
             binding.inputComments.text.toString()
         )
         Log.i("[SAVED STUDENT]", student.toString())
+        toast("Student saved successfully")
         return student
     }
 
@@ -305,6 +306,7 @@ class MainActivity : AppCompatActivity() {
             binding.inputComments.text.toString()
         )
         Log.i("[SAVED WORKER]", worker.toString())
+        toast("Worker saved successfully")
         return worker
     }
 
