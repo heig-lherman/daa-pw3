@@ -63,8 +63,7 @@ class MainActivity : AppCompatActivity() {
      * current form data to a predefined example
      */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.prefill_menu, menu)
+        menuInflater.inflate(R.menu.prefill_menu, menu)
         return true
     }
 
