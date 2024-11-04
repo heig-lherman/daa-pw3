@@ -48,6 +48,7 @@ val formattedDate = dateFormat.format(date)
 Par exemple, pour afficher la date en français, nous utilisons le `Locale.FRANCE` qui permet d'afficher les mois en français.
 Pour afficher la date en anglais britannique, nous utiliserions le `Locale.UK` et pour l'anglais américain, le `Locale.US`.
 
+Pour afficher la date en fonction de la langue de l'utilisateur, nous pouvons utiliser le `Locale.getDefault()` qui permet de récupérer la langue du téléphone.
 
 == Question 4.3
 _Veuillez choisir une question en fonction de votre choix d’implémentation :_
@@ -97,8 +98,25 @@ de validation du questionnaire ?
 Hint : Le champ remark, multilignes, peut provoquer des effets de bords en fonction du clavier
 virtuel utilisé sur votre smartphone. Vous pouvez l’échanger avec le champ e-mail pour faciliter
 vos recherches concernant la réponse à cette question._
+// TODO
 
 == Question 4.5
 _Pour les deux Spinners (nationalité et secteur d’activité), comment peut-on faire en sorte que
 le premier choix corresponde au choix null, affichant par exemple le label « Sélectionner » ?
 Comment peut-on gérer cette valeur pour ne pas qu’elle soit confondue avec une réponse ?_
+
+Pour afficher un choix par défaut dans un `Spinner`, il suffit d'abord d'ajouter dans la liste les strings `Sélectionner`
+de la manière suivante :
+```kotlin
+// Exemple pour le spinner de nationalités, l'on ajoute le choix "Sélectionner" en premier
+val nationalities = listOf(getString(R.string.nationality_empty)) + resources.getStringArray(R.array.nationalities
+```
+
+Ensuite, nous avons utilisé un `ArrayAdapter` pour afficher les éléments dans le `Spinner` et nous avons défini le premier élément comme étant le choix par défaut.
+```kotlin
+val adapter = CustomSpinnerAdapter(requireContext(), android.R.layout.simple_spinner_item, nationalities)
+```
+
+Afin de pouvoir modifier l'apparence du choix par défaut, nous avons créé un `CustomSpinnerAdapter`. Celui ci permet de changer le dropdown view pour afficher le choix par défaut de manière différente.
+Il suffit de surcharger la méthode `getDropDownView` pour définir le style du choix par défaut. Cette méthode est appelée pour chaque élément du dropdown.
+Il est donc possible de vérifier si l'élément est le premier de la liste pour le cacher.

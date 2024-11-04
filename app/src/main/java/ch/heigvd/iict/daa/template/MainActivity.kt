@@ -1,19 +1,11 @@
 package ch.heigvd.iict.daa.template
 
-import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.RadioGroup
-import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.get
 import androidx.core.view.updateLayoutParams
 import ch.heigvd.iict.daa.labo3.CustomSpinnerAdapter
 import ch.heigvd.iict.daa.labo3.Student
