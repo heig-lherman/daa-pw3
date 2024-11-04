@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         // OPTIONAL: Restore the data from the view model
         restoreData(Person.exampleStudent)
+        // restoreData(Person.exampleWorker)
     }
 
     /**
