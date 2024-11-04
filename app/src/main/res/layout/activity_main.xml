@@ -378,9 +378,9 @@
             app:barrierDirection="bottom"
             app:barrierMargin="@dimen/element_margin"
             app:constraint_referenced_ids="
-            labelExperience,
-            labelGradYear
-        " />
+                labelExperience,
+                labelGradYear
+            " />
 
         <TextView
             android:id="@+id/titleAdditionalData"

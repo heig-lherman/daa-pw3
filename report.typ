@@ -40,7 +40,7 @@ exemple, mais également des habitudes régionales différentes : la même date 
 britannique serait 12th June 1996 et en anglais américain June 12, 1996. Comment peut-on
 gérer cela au mieux ?_
 
-Pour gérer les différentes langues et les différentes habitudes régionales, nous initialisons l'instance de `DateFormat` du companion object de `Person` qui utilise la locale par défaut du système (via l'appel à `getDateInstance()`). Nous avons également défini la timezone du formatter à `UTC` pour éviter les problèmes de décalage lors de la conversion en epoch UTC pour le date picker.
+Pour gérer les différentes langues et les différentes habitudes régionales, nous initialisons l'instance de `DateFormat` du companion object de `Person` qui utilise la locale par défaut du système (via l'appel à `getDateInstance()`). Nous avons également défini la timezone du formater à `UTC` pour éviter les problèmes de décalage lors de la conversion en epoch UTC pour le date picker.
 ```kotlin
 companion object {
   private val utcTimezone: TimeZone = TimeZone.getTimeZone("UTC")
@@ -87,7 +87,7 @@ de validation du questionnaire ?_
 
 Oui, l'ordre peut être configuré en utilisant l'attribut `android:imeOptions` pour donner l'indication au clavier virtuel pour le type d'action qui doit être effectué avec le bouton "suivant". Nous l'avons par exemple utilisé pour le champ du prénom pour que le focus soit transféré au bouton d'ouverture du `DatePicker` après avoir appuyé sur "suivant", avec un `focusChangeListener` sur le bouton permettant l'ouverture automatique du sélecteur.
 
-Pour spécifier un ordre de remplissage personalisé, il est aussi possible d'utiliser l'attribut `android:nextFocusDown` pour indiquer le champ suivant à sélectionner lorsque le focus se déplace dans la direction `View.FOCUS_DOWN` (qui est la direction par défaut). L'attibut doit faire référence à l'ID du champ suivant. Il existe des variantes de cet attibut pour toutes les directions de focus possibles.
+Pour spécifier un ordre de remplissage personnalisé, il est aussi possible d'utiliser l'attribut `android:nextFocusDown` pour indiquer le champ suivant à sélectionner lorsque le focus se déplace dans la direction `View.FOCUS_DOWN` (qui est la direction par défaut). L'attribut doit faire référence à l'ID du champ suivant. Il existe des variantes de cet attribut pour toutes les directions de focus possibles.
 
 Pour que le champ des commentaires affiche le bouton "suivant" comme bouton de fin, nous avons spécifié l'attribut `android:imeOptions="actionDone"` pour indiquer que le bouton "suivant" doit être remplacé par un bouton "done" qui permet de valider le formulaire. Avec ceci nous avons ajouté un `OnEditorActionListener` sur le champ pour intercepter l'action "done" et automatiquement cliquer sur le bouton de validation du formulaire.
 
@@ -118,7 +118,7 @@ binding.inputNationality.adapter = SpinnerDefaultValueAdapter(
 
 Cet adapter va ajouter la valeur par défaut en première position de la liste des valeurs possibles. La méthode `getDropDownView` est surchargée pour désactiver l'affichage de la première valeur dans le dropdown.
 
-Nous surchargons également la méthode `isEnabled(int position)` pour empêcher la sélection de la première valeur dans le `Spinner`.
+Nous surchargeons également la méthode `isEnabled(int position)` pour empêcher la sélection de la première valeur dans le `Spinner`.
 
 ```kotlin
 override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -142,3 +142,86 @@ Ces deux surcharges feront que le choix n'est pas visible est non-sélectionnabl
 
 
 = Description de l'implémentation
+
+Nous avons défini notre layout en utilisant qu'un seul `ConstraintLayout` imbriqué dans une `ScrollView` nécessaire pour le cas où le formulaire dépasse la hauteur de l'écran.
+
+En termes de contrôleur, notre système utilise la génération de binding automatique pour simplifier la gestion de la récupération des éléments et de pouvoir définir les interactions avec.
+
+== Layout
+
+Nous avons implémenté des widgets Barrier qui permettent de basculer dynamiquement entre l'affichage des champs pour un étudiant et ceux pour un employé. Grâce à cette approche, le widget suivant se réfère directement au Barrier plutôt qu'aux labels spécifiques comme `labelExperience` ou `labelGradYear`.
+
+```xml
+<androidx.constraintlayout.widget.Barrier
+  android:id="@+id/additionalDataStartBarrier"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  app:barrierDirection="bottom"
+  app:barrierMargin="@dimen/element_margin"
+  app:constraint_referenced_ids="
+    labelExperience,
+    labelGradYear
+  " />
+```
+
+Pour gérer plus efficacement l'affichage des champs spécifiques aux étudiants et aux employés, nous avons créé des groupes de widgets. Cette organisation nous permet de contrôler la visibilité de l'ensemble des éléments associés en modifiant simplement la propriété de visibilité du groupe parent, qui s'applique alors automatiquement à tous les widgets référencés dans ce groupe.
+
+```xml
+<androidx.constraintlayout.widget.Group
+  android:id="@+id/additionalDataGroup"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  app:constraint_referenced_ids="
+    additionalDataStartBarrier,
+    titleAdditionalData,
+    labelEmail,
+    inputEmail,
+    labelComments,
+    inputComments
+  "
+  tools:visibility="visible" />
+```
+
+Pour maintenir une cohérence visuelle dans l'application, nous avons défini des dimensions de référence (ressources dimen) qui standardisent les marges et les tailles des éléments. Ces valeurs sont ensuite réutilisées à travers l'ensemble de l'interface, permettant d'assurer une uniformité visuelle et de faciliter les modifications globales.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_size">16sp</dimen>
+    <dimen name="element_margin">8dp</dimen>
+</resources>
+```
+
+== Interactions controller-view
+
+=== Remplissage de la date d'anniversaire
+
+Pour la sélection de la date d'anniversaire, nous avons choisi d'utiliser le composant de sélection de la librairie material avec le `MaterialDatePicker`. Nous avons fait le choix d'initialiser ce dernier à chaque ouverture afin de pouvoir sélectionner la date actuelle et la remplir avec la valeur du champ si elle est déjà présente.
+
+Quand le sélecteur de date retourne une valeur, le champ de texte non-modifiable par l'utilisateur est mis à jour avec une version formatée de la date selon la locale par défaut du système.
+
+=== Choix du type de personne
+
+Dans la méthode `onCreate`, un change listener est configuré pour le radio group de l'occupation et va afficher le groupe de champs spécifiques à l'occupation. 
+
+Afin de pouvoir remplir le formulaire avec les données par défaut, nous avons ajouté un menu déroulant, qui permet de remplir les valeurs par défaut pour un étudiant ou celle d'un employé.
+
+=== Valeurs par défaut pour les spinners
+
+Comme décrit dans la réponse à la question correspondante, un adapter spécialisé est utilisé pour définir l'entrée en position 0 comme étant l'entrée "placeholder". Les spinners de nationalité et de secteur sont donc modifiés dans la méthode `onCreate` pour y définir l'adapter.
+
+=== Options menu pour le pré-remplissage
+
+Afin de simplifier la gestion du remplissage du formulaire avec les données d'exemple, nous avons ajouté un contexte menu à l'activité via la définition `res/menu/prefill_menu.xml` qui est rajouté à l'activité via la méthode surchargée `onCreateOptionsMenu()`. Ensuite, quand l'utilisateur fait une sélection, nous lions les options avec notre méthode `restoreData` en fonction du choix effectué.
+
+=== Validation automatique après le remplissage du champ commentaires
+
+Comme décrit plus haut dans les questions, nous avons configuré le champ `EditText` des commentaires avec l'attribut `android:imeOptions="actionDone"` et un listener `OnEditorActionListener` qui va automatiquement cliquer sur le bouton "OK" si la touche "done" du clavier virtuel est pressée.
+
+=== Validation des données
+
+La validation est effectuée par le contrôleur et valide que les champs contiennent tous une valeur ou une sélection pour les spinners et radio group.
+
+Si la validation retourne `true`, alors une instance du modèle est retournée et ajoutée dans les logs.
+
+Nous avons également ajouté des toasts pour indiquer l'erreur de validation ou un message de confirmation en cas de succès.
