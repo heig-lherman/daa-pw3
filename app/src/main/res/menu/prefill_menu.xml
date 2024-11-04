@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/prefillStudent"
+        android:title="@string/menu_prefill_student" />
+    <item android:id="@+id/prefillWorker"
+        android:title="@string/menu_prefill_worker" />
+</menu>

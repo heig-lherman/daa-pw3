@@ -79,7 +79,7 @@ val datePicker = MaterialDatePicker.Builder.datePicker()
 ```
 
 == Question 4.4
-_Lors du remplissage des champs textuels, vous pouvez constater que le bouton « suivant »
+- _Lors du remplissage des champs textuels, vous pouvez constater que le bouton « suivant »
 présent sur le clavier virtuel permet de sauter automatiquement au prochain champ à saisir,
 cf. Fig. 2. Est-ce possible de spécifier son propre ordre de remplissage du questionnaire ?
 Arrivé sur le dernier champ, est-il possible de faire en sorte que ce bouton soit lié au bouton
@@ -103,7 +103,7 @@ binding.inputComments.setOnEditorActionListener { _, action, _ ->
 ```
 
 == Question 4.5
-_Pour les deux Spinners (nationalité et secteur d’activité), comment peut-on faire en sorte que
+- _Pour les deux Spinners (nationalité et secteur d’activité), comment peut-on faire en sorte que
 le premier choix corresponde au choix null, affichant par exemple le label « Sélectionner » ?
 Comment peut-on gérer cette valeur pour ne pas qu’elle soit confondue avec une réponse ?_
 

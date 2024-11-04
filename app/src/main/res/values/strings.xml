@@ -88,4 +88,7 @@
     <string name="toast_validation_error_worker_required_fields">Veuillez remplir tous les champs obligatoires pour l\'employé</string>
     <string name="toast_validation_error_sector">Veuillez sélectionner un secteur</string>
     <string name="toast_validation_error_occupation">Veuillez sélectionner une profession</string>
+
+    <string name="menu_prefill_student">Remplir avec un étudiant</string>
+    <string name="menu_prefill_worker">Remplir avec un employé</string>
 </resources>

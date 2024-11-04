@@ -2,6 +2,9 @@ package ch.heigvd.iict.daa.labo3
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.inputmethod.EditorInfo
 import android.widget.Spinner
 import android.widget.Toast
@@ -11,7 +14,6 @@ import ch.heigvd.iict.daa.labo3.databinding.ActivityMainBinding
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
-import java.text.DateFormat
 import java.util.Calendar
 import java.util.TimeZone
 
@@ -54,10 +56,35 @@ class MainActivity : AppCompatActivity() {
 
         // Setup automatic click on the validate button when done is clicked after the last edit
         setupDoneButtonAfterRemark()
+    }
 
-        // OPTIONAL: Restore the data from the view model
-        restoreData(Person.exampleStudent)
-        // restoreData(Person.exampleWorker)
+    /**
+     * Inflates the context menu with the prefill options, so that the user can easily change the
+     * current form data to a predefined example
+     */
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.prefill_menu, menu)
+        return true
+    }
+
+    /**
+     * Handles the context menu item selection, to prefill the form with example data
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.prefillStudent -> {
+                restoreData(Person.exampleStudent)
+                true
+            }
+
+            R.id.prefillWorker -> {
+                restoreData(Person.exampleWorker)
+                true
+            }
+
+            else -> super.onContextItemSelected(item)
+        }
     }
 
     /**
@@ -99,6 +126,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // Force initial state
+        binding.studentSpecificGroup.visibility = Group.GONE
+        binding.workerSpecificGroup.visibility = Group.GONE
     }
 
     /**
